@@ -8,6 +8,10 @@ failedLetters = ""
 triedLetters = ""
 failedTries = 0
 maxFail = 10
+def load_words():
+    global wordpool
+    with open('words_alpha.txt') as word_file:
+        wordpool = word_file.read().split()
 def isInString(s, t):
     for x in s:
         if x == t:
@@ -43,7 +47,6 @@ def draw():
     if failedTries >= maxFail:
         print("You lose :(")
         print(randomWord)
-        
         print("==================================")
 def tryInput(let):
     global triedLetters
@@ -65,21 +68,22 @@ def tryInput(let):
     triedLetters = triedLetters + (let)
     failedTries = failedTries + 1
     
-    
-while True:
-    triedLetters = ""
-    failedLetters = ""
-    correctLetters = ""
-    failedTries = 0
-    randomWord = wordpool[randint(0, len(wordpool)-1)]
-    refreshGuessedWord()    
-    while guessedWord != randomWord:
+if __name__ == '__main__':
+    load_words()
+    while True:
+        triedLetters = ""
+        failedLetters = ""
+        correctLetters = ""
+        failedTries = 0
+        randomWord = wordpool[randint(0, len(wordpool)-1)]
+        refreshGuessedWord()    
+        while guessedWord != randomWord:
+            draw()
+            if failedTries >= maxFail:
+                print("You lose L")
+                break
+            tryInput(input("Type a letter: "))
         draw()
-        if failedTries > maxFail:
-            print("You lose L")
-            break
-        tryInput(input("Type a letter: "))
-    draw()
-    input("Press any key to restart")
+        input("Press any key to restart")
         
         
