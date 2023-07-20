@@ -71,7 +71,10 @@ def tryInput(let):
     failedTries = failedTries + 1
     
 if __name__ == '__main__':
-    load_words()
+    try:
+        load_words()
+    except OSError as e:
+        print(e)
     while True:
         triedLetters = ""
         failedLetters = ""
