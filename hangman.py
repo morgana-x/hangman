@@ -55,6 +55,8 @@ def tryInput(let):
     global correctLetters
     if len(let) > 1:
         return
+    if let == " ":
+        return
     let = let.lower()
     if isInString(triedLetters, let):
         return
@@ -83,7 +85,7 @@ if __name__ == '__main__':
                 print("You lose L")
                 break
             tryInput(input("Type a letter: "))
-        draw()
+        #draw()
         input("Press any key to restart")
         
         
