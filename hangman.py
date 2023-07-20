@@ -88,7 +88,7 @@ if __name__ == '__main__':
                 print("You lose L")
                 break
             tryInput(input("Type a letter: "))
-        #draw()
+        draw()
         input("Press any key to restart")
         
         
