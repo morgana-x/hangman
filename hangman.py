@@ -1,4 +1,5 @@
 import math
+import os
 from random import *
 wordpool = ["nice", "cool", "cat", "cheese", "dictionary", "bruh", "dog", "pneumonoultramicroscopicsilicovolcanoconiosis", "supercalifragilisticexpialidocious", "floccinaucinihilipilification"]
 randomWord = wordpool[randint(0, len(wordpool)-1)]
@@ -20,7 +21,7 @@ hungman = """
 """
 def load_words():
     global wordpool
-    with open('words_alpha.txt') as word_file:
+    with open(os.getcwd() + '/words_alpha.txt') as word_file:
         wordpool = word_file.read().split()
 def isInString(s, t):
     for x in s:
