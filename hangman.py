@@ -8,6 +8,16 @@ failedLetters = ""
 triedLetters = ""
 failedTries = 0
 maxFail = 10
+hungman = """
+
+|-------|     
+|       O
+|      /|\    
+|       /\    
+|
+==================================
+
+"""
 def load_words():
     global wordpool
     with open('words_alpha.txt') as word_file:
@@ -46,8 +56,10 @@ def draw():
         print("==================================")
     if failedTries >= maxFail:
         print("You lose :(")
-        print(randomWord)
         print("==================================")
+        print("Word: " + randomWord)
+        print("==================================")
+        print(hungman)
 def tryInput(let):
     global triedLetters
     global failedLetters
@@ -63,7 +75,6 @@ def tryInput(let):
     if isInString(randomWord, let):
         correctLetters = correctLetters + let
         triedLetters = triedLetters + let
-        #positionsForLetter = getStringPositions(randomWord,let)
         refreshGuessedWord()
         return
     failedLetters = failedLetters + (let)
@@ -83,10 +94,9 @@ if __name__ == '__main__':
         randomWord = wordpool[randint(0, len(wordpool)-1)]
         refreshGuessedWord()    
         while guessedWord != randomWord:
-            draw()
             if failedTries >= maxFail:
-                print("You lose L")
                 break
+            draw()
             tryInput(input("Type a letter: "))
         draw()
         input("Press any key to restart")
